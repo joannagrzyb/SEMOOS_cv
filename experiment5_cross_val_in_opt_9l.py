@@ -14,7 +14,6 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.feature_selection import chi2
 
 from utils.load_dataset import load_data, find_datasets
-# from methods.moo_ensemble import MooEnsembleSVC
 from methods.moo_ensemble_SW import MooEnsembleSVC
 from methods.moo_ensemble_bootstrap import MooEnsembleSVCbootstrap
 from methods.moo_ensemble_bootstrap_pruned import MooEnsembleSVCbootstrapPruned

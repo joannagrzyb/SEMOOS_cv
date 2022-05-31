@@ -43,13 +43,13 @@ def find_datasets(storage=DATASETS_DIR):
         yield f_name.split('.')[0]
 
 
-def calc_imbalance_ratio(directories=["9higher_part1", "9higher_part2", "9higher_part3", "9lower"]):
+def calc_imbalance_ratio(directories):
     imbalance_ratios = []
     for dir in directories:
-        DATASETS_DIR = os.path.join(os.path.realpath(os.path.dirname(__file__)), '/home/joannagrzyb/dev/moo_tune_ensemble/datasets/%s/' % dir)
+        DATASETS_DIR = os.path.join(os.path.realpath(os.path.dirname(os.path.dirname(__file__))), 'datasets/%s/' % dir)
 
         for dataset_id, dataset_name in enumerate(find_datasets(DATASETS_DIR)):
-            dataset_path = "/home/joannagrzyb/dev/moo_tune_ensemble/datasets/" + dir + "/" + dataset_name + ".dat"
+            dataset_path = "datasets/" + dir + "/" + dataset_name + ".dat"
             X, y, classes = load_data(dataset_path)
             unique, counts = np.unique(y, return_counts=True)
 
