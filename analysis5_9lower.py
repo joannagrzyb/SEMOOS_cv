@@ -9,8 +9,9 @@ from methods.moo_ensemble_bootstrap_pruned import MooEnsembleSVCbootstrapPruned
 from methods.random_subspace_ensemble import RandomSubspaceEnsemble
 from methods.feature_selection_clf import FeatueSelectionClf
 from utils.load_dataset import find_datasets
-from utils.plots import scatter_pareto_chart, diversity_bar_plot
+from utils.plots import scatter_pareto_chart, scatter_plot, diversity_bar_plot
 from utils.wilcoxon_ranking_grid_all import pairs_metrics_multi_grid_all
+from utils.wilcoxon_ranking_grid import pairs_metrics_multi_grid
 
 
 DATASETS_DIR = os.path.join(os.path.realpath(os.path.dirname(__file__)), 'datasets/9lower')
@@ -43,7 +44,8 @@ reference_methods = [
                 "SEMOOSbp",
                 ]
 
-metrics_alias = ["BAC", "Gmean", "Gmean2", "F1score", "Recall", "Specificity", "Precision"]
+# metrics_alias = ["BAC", "Gmean", "Gmean2", "F1score", "Recall", "Specificity", "Precision"]
+metrics_alias = ["BAC", "Gmean", "Gmean2", "F1score", "Recall", "Precision"]
 diversity_measures = ["Entropy", "KW", "Disagreement", "Q statistic"]
 
 n_splits = 2
@@ -100,7 +102,12 @@ diversity_mean = np.mean(diversity_m, axis=0)
 # pairs_metrics_multi_grid(method_names=methods_alias, data_np=data_np, experiment_name="experiment_server/experiment5_cross_val_in_opt_9l", dataset_names=datasets, metrics=metrics_alias, filename="ex9l_ranking_plot_grid_variants", ref_methods=methods_alias[0:3], offset=-25)
 
 # Wilcoxon ranking grid - statistic test for all methods vs: SEMOOS, SEMOOSb, SEMOOSbp and all metrics
-pairs_metrics_multi_grid_all(method_names=methods_alias, data_np=data_np, experiment_name="experiment_server/experiment5_cross_val_in_opt_9l", dataset_names=datasets, metrics=metrics_alias, filename="ex9l_ranking_plot_grid_all", ref_methods=methods_alias[0:3], offset=-25)
+pairs_metrics_multi_grid_all(method_names=methods_alias, data_np=data_np, experiment_name="experiment_server/experiment5_cross_val_in_opt_9l", dataset_names=datasets, metrics=metrics_alias, filename="ex9l_ranking_plot_grid_all", ref_methods=methods_alias[0:3], offset=-20)
 
 # Diversity bar Plotting
 # diversity_bar_plot(diversity_mean, diversity_measures, methods_alias[:4], experiment_name="experiment5_cross_val_in_opt_9l")
+
+# Plot pareto front scatter
+# scatter_pareto_chart(DATASETS_DIR=DATASETS_DIR, n_folds=n_folds, experiment_name="experiment_server/experiment5_cross_val_in_opt_9l", methods=methods, methods_alias=methods_alias)
+# Plot scatter with all methods
+# scatter_plot(datasets=datasets, n_folds=n_folds, experiment_name="experiment_server/experiment5_cross_val_in_opt_9l", methods=methods, raw_data=data_np)

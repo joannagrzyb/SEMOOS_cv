@@ -9,8 +9,9 @@ from methods.moo_ensemble_bootstrap_pruned import MooEnsembleSVCbootstrapPruned
 from methods.random_subspace_ensemble import RandomSubspaceEnsemble
 from methods.feature_selection_clf import FeatueSelectionClf
 from utils.load_dataset import find_datasets
-from utils.plots import scatter_pareto_chart, diversity_bar_plot
+from utils.plots import scatter_pareto_chart, scatter_plot, diversity_bar_plot
 from utils.wilcoxon_ranking_grid_all import pairs_metrics_multi_grid_all
+from utils.wilcoxon_ranking_grid import pairs_metrics_multi_grid
 
 
 base_estimator = {'SVM': SVC(probability=True)}
@@ -34,7 +35,8 @@ methods_alias = [
                 "FSIRSVM"
                 ]
 
-metrics_alias = ["BAC", "Gmean", "Gmean2", "F1score", "Recall", "Specificity", "Precision"]
+# metrics_alias = ["BAC", "Gmean", "Gmean2", "F1score", "Recall", "Specificity", "Precision"]
+metrics_alias = ["BAC", "Gmean", "Gmean2", "F1score", "Recall", "Precision"]
 diversity_measures = ["Entropy", "KW", "Disagreement", "Q statistic"]
 
 n_splits = 2
@@ -94,11 +96,15 @@ diversity_mean = np.mean(diversity_m, axis=0)
 
 # Wilcoxon ranking grid - statistic test for methods: SEMOOS, SEMOOSb, SEMOOSbp and all metrics
 # UNCOMMENT ONLY methods SEMOOS, SEMOOSb, SEMOOSbp
-# pairs_metrics_multi_grid(method_names=methods_alias, data_np=data_np, experiment_name="experiment_server/experiment5_cross_val_in_opt_9h", dataset_names=datasets, metrics=metrics_alias, filename="ex9h_ranking_plot_grid_variants", ref_methods=methods_alias[0:3], offset=-75)
+# pairs_metrics_multi_grid(method_names=methods_alias, data_np=data_np, experiment_name="experiment_server/experiment5_cross_val_in_opt_9h", dataset_names=datasets, metrics=metrics_alias, filename="ex9h_ranking_plot_grid_variants", ref_methods=methods_alias[0:3], offset=-65)
 
 # Wilcoxon ranking grid - statistic test for all methods vs: SEMOOS, SEMOOSb, SEMOOSbp and all metrics
-pairs_metrics_multi_grid_all(method_names=methods_alias, data_np=data_np, experiment_name="experiment_server/experiment5_cross_val_in_opt_9h", dataset_names=datasets, metrics=metrics_alias, filename="ex9h_ranking_plot_grid_all", ref_methods=methods_alias[0:3], offset=-75)
-
+pairs_metrics_multi_grid_all(method_names=methods_alias, data_np=data_np, experiment_name="experiment_server/experiment5_cross_val_in_opt_9h", dataset_names=datasets, metrics=metrics_alias, filename="ex9h_ranking_plot_grid_all", ref_methods=methods_alias[0:3], offset=-60)
 
 # Diveersity bar Plotting
-diversity_bar_plot(diversity_mean, diversity_measures, methods_alias[:4], experiment_name="experiment5_cross_val_in_opt_9h")
+# diversity_bar_plot(diversity_mean, diversity_measures, methods_alias[:4], experiment_name="experiment5_cross_val_in_opt_9h")
+
+# Plot pareto front scatter
+# scatter_pareto_chart(DATASETS_DIR=DATASETS_DIR, n_folds=n_folds, experiment_name="experiment_server/experiment5_cross_val_in_opt_9h", methods=methods, methods_alias=methods_alias)
+# Plot scatter with all methods
+# scatter_plot(datasets=datasets, n_folds=n_folds, experiment_name="experiment_server/experiment5_cross_val_in_opt_9h", methods=methods, raw_data=data_np)

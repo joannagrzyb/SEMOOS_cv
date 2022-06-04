@@ -130,7 +130,7 @@ def pairs_metrics_multi_grid_all(method_names, data_np, experiment_name, dataset
 
     if not os.path.exists("results/%s/ranking/" % (experiment_name)):
         os.makedirs("results/%s/ranking/" % (experiment_name))
-    plt.gcf().set_size_inches(9, 9)
+    plt.gcf().set_size_inches(9, 6)
     filepath = "results/%s/ranking/%s" % (experiment_name, filename)
     plt.savefig(filepath + ".png", bbox_inches='tight')
     plt.savefig(filepath + ".eps", format='eps', bbox_inches='tight')

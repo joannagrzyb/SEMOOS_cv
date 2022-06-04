@@ -15,6 +15,8 @@ def scatter_pareto_chart(DATASETS_DIR, n_folds, experiment_name, methods, method
                 for sol_id in range(n_rows_p):
                     try:
                         filename_pareto = "results/%s/pareto_raw/%s/%s/fold%d/sol%d.csv" % (experiment_name, dataset, clf_name, fold_id, sol_id)
+                        # if os.path.exists(filename_pareto):
+                        #     continue
                         solution = np.genfromtxt(filename_pareto, dtype=np.float32)
                         solution = solution.tolist()
                         solution[0] = solution[0] * (-1)
@@ -56,7 +58,7 @@ def scatter_plot(datasets, n_folds, experiment_name, methods, raw_data):
             solutions_semoosbp = []
             for sol_id in range(n_rows_p):
                 try:
-                    filename_pareto_semoos = "results/%s/pareto_raw/%s/MooEnsembleSVC/fold%d/sol%d.csv" % (experiment_name, dataset, fold_id, sol_id)
+                    filename_pareto_semoos = "results/%s/pareto_raw/%s/MooEnsembleSVC_SW/fold%d/sol%d.csv" % (experiment_name, dataset, fold_id, sol_id)
                     solution_semoos = np.genfromtxt(filename_pareto_semoos, dtype=np.float32)
                     solution_semoos = solution_semoos.tolist()
                     solution_semoos[0] = solution_semoos[0] * (-1)
@@ -65,7 +67,7 @@ def scatter_plot(datasets, n_folds, experiment_name, methods, raw_data):
                 except IOError:
                     pass
                 try:
-                    filename_pareto_semoosb = "results/%s/pareto_raw/%s/MooEnsembleSVCbootstrap/fold%d/sol%d.csv" % (experiment_name, dataset, fold_id, sol_id)
+                    filename_pareto_semoosb = "results/%s/pareto_raw/%s/MooEnsembleSVCbootstrap_SW/fold%d/sol%d.csv" % (experiment_name, dataset, fold_id, sol_id)
                     solution_semoosb = np.genfromtxt(filename_pareto_semoosb, dtype=np.float32)
                     solution_semoosb = solution_semoosb.tolist()
                     solution_semoosb[0] = solution_semoosb[0] * (-1)
@@ -74,7 +76,7 @@ def scatter_plot(datasets, n_folds, experiment_name, methods, raw_data):
                 except IOError:
                     pass
                 try:
-                    filename_pareto_semoosbp = "results/%s/pareto_raw/%s/MooEnsembleSVCbootstrapPruned/fold%d/sol%d.csv" % (experiment_name, dataset, fold_id, sol_id)
+                    filename_pareto_semoosbp = "results/%s/pareto_raw/%s/MooEnsembleSVCbootstrapPruned_SW/fold%d/sol%d.csv" % (experiment_name, dataset, fold_id, sol_id)
                     solution_semoosbp = np.genfromtxt(filename_pareto_semoosbp, dtype=np.float32)
                     solution_semoosbp = solution_semoosbp.tolist()
                     solution_semoosbp[0] = solution_semoosbp[0] * (-1)

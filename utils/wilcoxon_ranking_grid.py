@@ -29,7 +29,7 @@ def pairs_metrics_multi_grid(method_names, data_np, experiment_name, dataset_nam
         metrics.remove("F1score")
 
     fig, axes = plt.subplots(len(metrics), len(ref_methods))
-    fig.subplots_adjust(hspace=0.6, wspace=0.6)
+    fig.subplots_adjust(hspace=2, wspace=0.6)
 
     # Init/clear ranks
     for index_i, ref_method in enumerate(ref_methods):
@@ -109,7 +109,7 @@ def pairs_metrics_multi_grid(method_names, data_np, experiment_name, dataset_nam
                 axes[index_j, index_i].set_xlim([0, len(dataset_names)])
 
             # Name of the metric only on the left side of the figure
-            axes[index_j, 0].text(offset, index_j*0.1, metric.upper(), fontsize=12, weight="bold")
+            axes[index_j, 0].text(offset, index_j*0.2, metric.upper(), fontsize=12, weight="bold")
             # Name of the reference method only on the top of the figure
             axes[0, index_i].text(index_i, 2, ref_method, fontsize=12, weight="bold")
 
@@ -126,7 +126,7 @@ def pairs_metrics_multi_grid(method_names, data_np, experiment_name, dataset_nam
 
     if not os.path.exists("results/%s/ranking/" % (experiment_name)):
         os.makedirs("results/%s/ranking/" % (experiment_name))
-    plt.gcf().set_size_inches(9, 6)
+    plt.gcf().set_size_inches(9, 4)
     filepath = "results/%s/ranking/%s" % (experiment_name, filename)
     plt.savefig(filepath + ".png", bbox_inches='tight')
     plt.savefig(filepath + ".eps", format='eps', bbox_inches='tight')
